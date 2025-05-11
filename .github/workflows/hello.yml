@@ -13,7 +13,7 @@ jobs:
       - run: echo "Hello World!"
     steps:
       - name: Display date
-      - run: date
+      - run: echo date
     steps:
       - name: List files
-      - run: ls -ls
+      - run: echo ls -ls
