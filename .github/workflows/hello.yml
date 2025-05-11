@@ -12,6 +12,6 @@ jobs:
       - name: Say hello
       - run: echo "Hello World!"
       - name: Display date
-      - run: echo date
+      - run: date
       - name: List files
-      - run: echo ls -ls
+      - run: ls -ls
