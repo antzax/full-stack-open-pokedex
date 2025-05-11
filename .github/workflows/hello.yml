@@ -15,5 +15,5 @@ jobs:
       - name: Display date
       - run: date
     steps:
-      -name: List files
+      - name: List files
       - run: ls -ls
