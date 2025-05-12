@@ -11,7 +11,5 @@ jobs:
     steps:
       - name: Say hello
       - run: echo "Hello World!"
-      - name: Display date
       - run: date
-      - name: List files
       - run: ls -ls
