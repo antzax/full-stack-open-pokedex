@@ -1,9 +1,17 @@
 const { describe, test, expect, } = require('@playwright/test')
 
 describe('Pokedex', () => {
-  test('front page can be opened', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('')
+  })
+
+  test('front page can be opened', async ({ page }) => {
     await expect(page.getByText('ivysaur')).toBeVisible()
     await expect(page.getByText('Pokémon and Pokémon character names are trademarks of Nintendo.')).toBeVisible()
+  })
+
+  test('one can move from frontpage to particular Pokemon page', async ({ page }) => {
+    await page.getByText('ivysaur').click()
+    await expect(page.getByText('chlorophyll')).toBeVisible()
   })
 })
