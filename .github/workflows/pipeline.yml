@@ -25,7 +25,7 @@ jobs:
       - run: npx playwright install --with-deps
       - run: npx playwright test
       - name: Discord Notification
-        if: {{ failure() }}
+        if: failure()
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: error
@@ -43,7 +43,7 @@ jobs:
         if: ${{ github.event_name == 'push' && env.SKIP_DEPLOYMENT == 'false' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
       - name: Discord Notification
-        if: {{ success() }}
+        if: success()
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
