@@ -22,8 +22,6 @@ jobs:
       - run: npm run eslint
       - run: npm run build
       - run: npm run test
-      - run: npx playwright install --with-deps
-      - run: npx playwright test
       - name: Discord Notification
         if: failure()
         uses: rjstone/discord-webhook-notify@v1
@@ -39,6 +37,8 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - run: npx playwright install --with-deps
+      - run: npx playwright test
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && env.SKIP_DEPLOYMENT == 'false' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
