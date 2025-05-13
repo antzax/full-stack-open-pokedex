@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize]
 
 env:
-  SKIP_DEPLOYMENT: ${{ contains(join(github.event.commits.*.message, ' '), '#skip') }}
+  SKIP_DEPLOYMENT: ${{ contains(github.event.head_commit.message), '#skip') }}
 
 jobs:
   simple_deployment_pipeline:
@@ -50,7 +50,7 @@ jobs:
           description: Deployment Succeeded!
           details: Commit https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           footer: ${{ github.ref }}
-          text: ${{ github.ref_name }}
+          text: ${{ github.event.head_commit.message }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
