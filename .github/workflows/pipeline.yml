@@ -41,7 +41,8 @@ jobs:
           retention-days: 30
       - name: Run tests
         run: npm run test
-      - run: npx playwright install chromium --with-deps
+        # Probably need to change this to run only chromium but getting errors right now
+      - run: npx playwright install chromium --with-deps #- run: npx playwright install --with-deps Error: Process completed with exit code 1.
       - run: npx playwright test
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && env.SKIP_DEPLOYMENT == 'false' }}
