@@ -1,9 +1,8 @@
 name: Scheduled check
 on:
-  schedule:
+  push:
     branches:
-    - main
-    steps:
+      - main
 
 jobs:
   ping:
