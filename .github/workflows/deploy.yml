@@ -9,6 +9,7 @@ on:
 
 jobs:
   main:
+    if: ${{ github.event_name == 'push' }}
     name: Deploy to Render
     runs-on: ubuntu-latest
     steps:
