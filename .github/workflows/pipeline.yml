@@ -29,7 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@v1
+        uses: anothrNick/github-tag-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_PREFIX: v
           DEFAULT_BUMP: patch
