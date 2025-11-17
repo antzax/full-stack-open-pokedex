@@ -1,12 +1,10 @@
 name: Testing stuff
 on: push
-env:
-  SKIP_DEPLOY: ${{ contains( join(github.event.commits.*.message, ' '), '#skip' ) }}
 
 jobs:
   a_test_job:
     runs-on: ubuntu-latest
-    if: ${ env.SKIP_DEPLOY == 'false' }}
+    if: ${{ contains( join(github.event.commits.*.message, ' '), '#skip' ) }}
     steps:
       - uses: actions/checkout@v4
       - name: github context
