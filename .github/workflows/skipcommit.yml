@@ -5,9 +5,13 @@ on:
     branches:
       - main
 
+env:
+  SKIP_DEPLOY: ${{ contains( join(github.event.commits.*.message, ' '), '#skip' ) }}
+
 jobs:
   a_test_job:
     runs-on: ubuntu-latest
+    if: ${{ github.event.commits && env.SKIP_DEPLOY == 'false' }}
     steps:
       - uses: actions/checkout@v4
       - name: github context
