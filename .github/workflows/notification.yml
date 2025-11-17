@@ -13,7 +13,7 @@ jobs:
       if: ${{ success() }}
       uses: rjstone/discord-webhook-notify@v2
       with:
-        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        webhookUrl: ${{ github.secrets.DISCORD_WEBHOOK }}
         username: Coolbot
         text: Below this normal-looking message is an embed!
         severity: info
@@ -22,7 +22,7 @@ jobs:
       if: ${{ failure() }}
       uses: rjstone/discord-webhook-notify@v2
       with:
-        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        webhookUrl: ${{ github.secrets.DISCORD_WEBHOOK }}
         username: Failbot
         severity: error
         title: Build failed
