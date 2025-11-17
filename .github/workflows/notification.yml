@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: The job has succeeded
-      if: ${{ success() }}
+      if: success()
       uses: rjstone/discord-webhook-notify@v2.2.1
       with:
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
@@ -19,7 +19,7 @@ jobs:
         severity: info
         title: A new version of Pokedex deployed
     - name: The job has failed
-      if: ${{ failure() }}
+      if: failure()
       uses: rjstone/discord-webhook-notify@v2.2.1
       with:
         webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
