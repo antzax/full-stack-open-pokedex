@@ -11,18 +11,18 @@ jobs:
     steps:
     - name: The job has succeeded
       if: ${{ success() }}
-      uses: rjstone/discord-webhook-notify@v2
+      uses: rjstone/discord-webhook-notify@v2.2.1
       with:
-        webhookUrl: ${{ github.secrets.DISCORD_WEBHOOK }}
+        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         username: Coolbot
         text: Below this normal-looking message is an embed!
         severity: info
         title: A new version of Pokedex deployed
     - name: The job has failed
       if: ${{ failure() }}
-      uses: rjstone/discord-webhook-notify@v2
+      uses: rjstone/discord-webhook-notify@v2.2.1
       with:
-        webhookUrl: ${{ github.secrets.DISCORD_WEBHOOK }}
+        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         username: Failbot
         severity: error
         title: Build failed
