@@ -1,28 +1,26 @@
-name: CI/CD Notifications
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  discord_notify:
+  notify-discord-about-push-to-repo:
     runs-on: ubuntu-latest
     steps:
-    - name: The job has succeeded
-      if: success()
-      uses: rjstone/discord-webhook-notify@v2.2.1
-      with:
-        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-        username: Coolbot
-        text: Below this normal-looking message is an embed!
-        severity: info
-        title: A new version of Pokedex deployed
-    - name: The job has failed
-      if: failure()
-      uses: rjstone/discord-webhook-notify@v2.2.1
-      with:
-        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-        username: Failbot
-        severity: error
-        title: Build failed
+      - name: Discord notify
+        uses: rjstone/discord-webhook-notify@v2
+        if: success()
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: Coolbot
+          text: Below this normal-looking message is an embed!
+          severity: info
+          title: A new version of Pokedex deployed
+      - name: The job has failed
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v2.2.1
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: Failbot
+          severity: error
+          title: Build failed
