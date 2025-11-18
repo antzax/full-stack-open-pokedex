@@ -15,6 +15,7 @@ jobs:
         if: ${{ success() }}
         with:
           args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
+          
       - name: The job has failed
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
