@@ -6,21 +6,19 @@ on:
 jobs:
   notify-discord-about-push-to-repo:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Discord notify
-        uses: rjstone/discord-webhook-notify@v2
-        if: success()
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        if: ${{ success() }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          username: Coolbot
-          text: Below this normal-looking message is an embed!
-          severity: info
-          title: A new version of Pokedex deployed
+          args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
       - name: The job has failed
-        if: failure()
-        uses: rjstone/discord-webhook-notify@v2.2.1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        if: ${{ failure() }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          username: Failbot
-          severity: error
-          title: Build failed
+          args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
