@@ -1,8 +1,8 @@
-name: periodic health check
+name: Periodic health check
 
 on:
   schedule:
-    - cron: "* 24 * * *"
+    - cron: "* 23 * * *"
 
 jobs:
   check-health:
